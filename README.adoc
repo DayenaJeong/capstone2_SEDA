@@ -1,8 +1,8 @@
-= About the project
+= About the Capstone design project
 
-* The goal of this research is to assist new parents by addressing pose-based real-time body movements of babies (such as arching back, headbanging, kicking legs, rubbing eyes, stretching, sucking fingers) and making sense of their activities.
+* The purpose of this project is to help new parents understand their babies' pose-based real-time bodily motions (such as arching back, headbanging, kicking legs, wiping eyes, stretching, and sucking fingers).
 
-* Three HPE (Human Pose Estimation) models are used and these models are compared in terms of deep learning evaluations.
+* We used the "OpenPose" Model for the pre-processing step.
 
 == The dataset
 
@@ -10,7 +10,9 @@
 
 ** Crawled from video sharing platforms such as YouTube, TikTok, etc.
 
-* These video clips are fed to HPE (Human Pose Estimation) models such as https://github.com/CMU-Perceptual-Computing-Lab/openpose[OpenPose, role=external,window=_blank], https://github.com/MVIG-SJTU/AlphaPose/tree/pytorch[AlphaPose, role=external,window=_blank], and https://github.com/wmcnally/kapao[KAPAO, role=external,window=_blank].
+** The dataset used in this project can be found at the following link: https://github.com/meyurtsever/BabyPose[BabyPose, role=external,window=_blank]
+
+* These video clips are fed to HPE (Human Pose Estimation) models: https://github.com/CMU-Perceptual-Computing-Lab/openpose[OpenPose, role=external,window=_blank].
 
 ** These coordinate outputs of body parts are normalized, preprocessed, and used in the deep learning model to predict activities.
 
@@ -20,19 +22,13 @@
 
 * For pre-processing, extracting only x and y coordinates of detected body parts is necessary for our deep learning model.
 
-* Pre-processing steps for:
-
-** AlphaPose https://github.com/meyurtsever/BabyPose/blob/main/alphapose/1_json_to_txt_alphaPose.ipynb[-> (1_json_to_txt_alphaPose.ipynb),role=external,window=_blank]
-
-** KAPAO https://github.com/meyurtsever/BabyPose/blob/main/kapao/1_json_to_txt_kapao.ipynb[-> (1_json_to_txt_kapao.ipynb),role=external,window=_blank]
+* Pre-processing step for:
 
 ** OpenPose https://github.com/meyurtsever/BabyPose/blob/main/openpose/1_json_to_txt_openpose.ipynb[-> (1_json_to_txt_openpose.ipynb),role=external,window=_blank]
 
-* Finally, pre-processed HPE outputs are put together to create train and test datasets (See merge_all_txt notebooks for each HPE model).
+* Finally, pre-processed HPE outputs are put together to create train and test datasets (See merge_all_txt notebooks).
 
 == All of the steps for the OpenPose HPE
-
-image::figures/proposed_arch.png[]
 
 = Installation
 
@@ -41,7 +37,7 @@ image::figures/proposed_arch.png[]
 * Clone the project:
 [source,bash]
 ----
-git clone https://github.com/meyurtsever/BabyPose.git
+git clone https://github.com/DayenaJeong/capstone2_SEDA.git
 ----
 
 == YOLOv4-tiny
@@ -93,58 +89,4 @@ conda activate openpose
 ----
 cd openpose
 python predict_activity_openpose.py -i demo/baby_stretching.mp4
-----
-
-== Install AlphaPose HPE
-
-* We use https://github.com/MVIG-SJTU/AlphaPose/tree/pytorch[ v0.3.0 version,role=external,window=_blank] of the AlphaPose in this project.
-
-* Create virtual environment for AlphaPose
-[source,bash]
-----
-conda create --name alphapose
-conda activate alphapose
-----
-* Install AlphaPose https://github.com/MVIG-SJTU/AlphaPose/tree/pytorch#installation[from their guide,role=external,window=_blank]  (PyTorch GPU is recommended).
-* Install dependencies for the AlphaPose inference
-** `cd alphapose` + 
-`pip install -r requirements.txt`
-** Torch is excluded from `requirements.txt`
-** Get the right one for your system https://pytorch.org/get-started/previous-versions/[from here.,role=external,window=_blank]
-
-=== Inference with AlphaPose
-
-* Place demo videos to `demo` folder. +
-* In the root directory of BabyPose:
-
-[source,bash]
-----
-python alphapose/predict_activity_alphapose.py -i demo/baby_stretching.mp4
-----
-
-== Install KAPAO HPE
-
-* Create virtual environment for KAPAO
-[source,bash]
-----
-conda create -n kapao python=3.6
-conda activate kapao
-----
-
-* Install KAPAO https://github.com/wmcnally/kapao#setup[from their guide,role=external,window=_blank]  (PyTorch GPU is recommended).
-* Install dependencies for the KAPAO inference
-** `cd kapao` + 
-`pip install -r requirements.txt`
-** Torch is excluded from `requirements.txt`
-** Get the right one for your system https://pytorch.org/get-started/previous-versions/[from here.,role=external,window=_blank]
-
-=== Inference with KAPAO
-
-* Place demo videos to `demo` folder. +
-* In the root directory of BabyPose:
-
-[source,bash]
-----
-cd kapao
-python predict_activity_kapao.py -i demo/baby_stretching.mp4
 ----
