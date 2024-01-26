@@ -12,7 +12,7 @@
 
 ** The dataset used in this project can be found at the following link: https://github.com/meyurtsever/BabyPose[BabyPose, role=external,window=_blank]
 
-* These video clips are fed to HPE (Human Pose Estimation) models: https://github.com/CMU-Perceptual-Computing-Lab/openpose[OpenPose, role=external,window=_blank].
+* These video clips are incorporated into the HPE (Human Pose Estimation) models: https://github.com/CMU-Perceptual-Computing-Lab/openpose[OpenPose, role=external,window=_blank].
 
 ** These coordinate outputs of body parts are normalized, preprocessed, and used in the deep learning model to predict activities.
 
