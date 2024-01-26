@@ -18,7 +18,7 @@
 
 == Data pre-processing
 
-* JSON/CSV outputs of HPE models have excess information for our application.
+* JSON/CSV outputs of the OpenPose have excess information for our application.
 
 * For pre-processing, extracting only x and y coordinates of detected body parts is necessary for our deep learning model.
 
@@ -26,7 +26,7 @@
 
 ** OpenPose https://github.com/DayenaJeong/capstone2_SEDA/blob/main/openpose/1_json_to_txt_openpose.ipynb[-> (1_json_to_txt_openpose.ipynb),role=external,window=_blank]
 
-* Finally, pre-processed HPE outputs are put together to create train and test datasets (See merge_all_txt notebooks).
+* Finally, pre-processed HPE outputs are put together to create train and test datasets (See https://github.com/DayenaJeong/capstone2_SEDA/blob/main/openpose/json_output_openpose/all_combined_jsons.txt[-> (all_combined_jsons.txt),role=external,window=_blank]).
 
 == All of the steps for the OpenPose HPE
 
