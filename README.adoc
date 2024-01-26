@@ -24,7 +24,7 @@
 
 * Pre-processing step for:
 
-** OpenPose https://github.com/meyurtsever/BabyPose/blob/main/openpose/1_json_to_txt_openpose.ipynb[-> (1_json_to_txt_openpose.ipynb),role=external,window=_blank]
+** OpenPose https://github.com/DayenaJeong/capstone2_SEDA/blob/main/openpose/1_json_to_txt_openpose.ipynb[-> (1_json_to_txt_openpose.ipynb),role=external,window=_blank]
 
 * Finally, pre-processed HPE outputs are put together to create train and test datasets (See merge_all_txt notebooks).
 
