@@ -2,7 +2,7 @@
 
 * The purpose of this project is to help new parents understand their babies' pose-based real-time bodily motions (such as arching back, headbanging, kicking legs, wiping eyes, stretching, and sucking fingers).
 
-* We used the "OpenPose" Model for the pre-processing step.
+* We used the "MoveNet" Model for the pre-processing step.
 
 == The dataset
 
