@@ -401,8 +401,7 @@ if uploaded_file is not None:
     # 비율을 기준으로 내림차순 정렬
     sorted_labels = sorted(label_percentages.items(), key=lambda item: item[1], reverse=True)
 
-    # 파일명에 특정 단어가 포함된 경우, 해당 라벨로 대체
-    # 파일명에 특정 단어가 포함된 경우, 해당 라벨로 대체
+    ## 파일명에 특정 단어가 포함된 경우, 해당 라벨로 대체
     if sorted_labels:
         highest_percentage = sorted_labels[0][1]  # 가장 높은 비율을 가져옴
     
@@ -427,7 +426,6 @@ if uploaded_file is not None:
         else:
             # 특정 단어가 포함되지 않은 경우 기존 예측 결과 사용
             label_percentages = {label: count / total_predictions for label, count in label_counts.items()}
-    
     else:
         # 특정 단어가 포함되지 않은 경우 기존 예측 결과 사용
         label_percentages = {label: count / total_predictions for label, count in label_counts.items()}
@@ -437,9 +435,9 @@ if uploaded_file is not None:
     for label, percentage in label_percentages.items():
         # 라벨 이름과 설명을 분리하여 출력
         label_name = label
-        description = next(desc[1] for desc in label_descriptions.values() if desc[0] == label_name)
+        description = next((desc[1] for desc in label_descriptions.values() if desc[0] == label_name), "설명이 없습니다")
         st.markdown(f'<h4 style="font-size:22px;">✅ {label_name}: {(percentage * 100):.2f}%</h4>', unsafe_allow_html=True)
         st.write(f"🔍 **설명**: {description}")
-        
+
     os.unlink(video_file_path)
         
