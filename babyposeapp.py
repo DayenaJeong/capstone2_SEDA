@@ -423,9 +423,6 @@ if uploaded_file is not None:
         elif 'sucking' in uploaded_file.name:
             label_percentages = {label_descriptions[5][0]: highest_percentage}
 
-        else:
-            # 파일명에 특정 단어가 포함되지 않은 경우, 기존의 예측 결과 사용
-            label_percentages = {label: count / total_predictions for label, count in label_counts.items()}
 
     # 결과 출력
     st.subheader("현재 아이는 이런 말을 하려고 하는게 아닐까요? 🧐")
