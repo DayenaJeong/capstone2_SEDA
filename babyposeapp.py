@@ -426,7 +426,6 @@ if uploaded_file is not None:
         else:
             # 파일명에 특정 단어가 포함되지 않은 경우, 기존의 예측 결과 사용
             label_percentages = {label: count / total_predictions for label, count in label_counts.items()}
-            sorted_labels = sorted(label_percentages.items(), key=lambda item: item[1], reverse=True)
 
     # 결과 출력
     st.subheader("현재 아이는 이런 말을 하려고 하는게 아닐까요? 🧐")
