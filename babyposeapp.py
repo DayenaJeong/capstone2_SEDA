@@ -435,10 +435,9 @@ if uploaded_file is not None:
     for label, percentage in label_percentages.items():
         # 라벨 이름과 설명을 분리하여 출력
         label_name = label
-        description = next((desc[1] for desc in label_descriptions.values() if desc[0] == label_name), "설명이 없습니다")
-        # 스트림릿 마크다운을 사용하여 라벨 이름과 설명 출력
-        st.markdown(f'**✅ {label_name}: {(percentage * 100):.2f}%**')
-        st.markdown(f'**🔍 설명**: {description.strip()}')
+        description = [desc[1] for desc in label_descriptions.values() if desc[0] == label_name][0]
+        st.markdown(f'<h4 style="font-size:22px;">✅ {label_name}: {(percentage * 100):.2f}%</h4>', unsafe_allow_html=True)
+        st.write(f"🔍 **설명**: {description}")
 
     os.unlink(video_file_path)
         
