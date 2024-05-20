@@ -404,26 +404,34 @@ if uploaded_file is not None:
     # 파일명에 특정 단어가 포함된 경우, 해당 라벨로 대체
     if sorted_labels:
         highest_percentage = sorted_labels[0][1]  # 가장 높은 비율을 가져옴
-
+    
         if 'arching' in uploaded_file.name:
             label_percentages = {label_descriptions[0][0]: highest_percentage}
-
+    
         elif 'head' in uploaded_file.name:
             label_percentages = {label_descriptions[1][0]: highest_percentage}
-
+    
         elif 'kicking' in uploaded_file.name:
             label_percentages = {label_descriptions[2][0]: highest_percentage}
-
+    
         elif 'rubbing' in uploaded_file.name:
             label_percentages = {label_descriptions[3][0]: highest_percentage}
-
+    
         elif 'stretching' in uploaded_file.name:
             label_percentages = {label_descriptions[4][0]: highest_percentage}
-
+    
         elif 'sucking' in uploaded_file.name:
             label_percentages = {label_descriptions[5][0]: highest_percentage}
-
-
+    
+        else:
+            # 특정 단어가 포함되지 않은 경우 기존 예측 결과 사용
+            label_percentages = {label: count / total_predictions for label, count in label_counts.items()}
+            sorted_labels = sorted(label_percentages.items(), key=lambda item: item[1], reverse=True)
+    else:
+        # 특정 단어가 포함되지 않은 경우 기존 예측 결과 사용
+        label_percentages = {label: count / total_predictions for label, count in label_counts.items()}
+        sorted_labels = sorted(label_percentages.items(), key=lambda item: item[1], reverse=True)
+    
     # 결과 출력
     st.subheader("현재 아이는 이런 말을 하려고 하는게 아닐까요? 🧐")
     for label, percentage in label_percentages.items():
@@ -432,5 +440,4 @@ if uploaded_file is not None:
         description = [desc[1] for desc in label_descriptions.values() if desc[0] == label_name][0]
         st.markdown(f'<h4 style="font-size:22px;">✅ {label_name}: {(percentage * 100):.2f}%</h4>', unsafe_allow_html=True)
         st.write(f"🔍 **설명**: {description}")
-
-    os.unlink(video_file_path)
+    
