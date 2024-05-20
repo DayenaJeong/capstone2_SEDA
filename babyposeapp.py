@@ -436,7 +436,8 @@ if uploaded_file is not None:
     for label, percentage in label_percentages.items():
         # 라벨 이름과 설명을 분리하여 출력
         label_name = label
-        description = next((desc[1] for desc in label_descriptions.values() if desc[0] == label_name), "설명이 없습니다").strip()
+        # description을 올바르게 찾기
+        description = next((desc for key, desc in label_descriptions.items() if desc[0] == label_name), ("설명이 없습니다", ""))[1]
         # 설명의 줄바꿈을 HTML 태그로 변환
         description = description.replace("\n", "<br>").replace("  ", "")
     
